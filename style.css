@@ -1,0 +1,424 @@
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Kosugi&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+
+body {
+   
+    overflow-x: hidden;
+    font-family: "Crimson Text";
+    /*font-size: 20;*/
+    background-color: #fffdf0;
+
+
+}
+
+path{
+    
+    z-index: 5;
+}
+
+#speed{
+    width: 70%;
+}
+
+
+
+#legend {
+    display: inline-block;
+    position: fixed;
+    left: 595;
+    z-index: 30;
+    height: 100px;
+    width: 300px;
+    font-family: "Crimson Text";
+    z-index: 1;
+    //background-color: red;
+    pointer-events: none;
+
+}
+
+#sections {
+    position: relative;
+    display: in;
+    width: 740px;
+    margin-top: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 30%;
+    //background-color:#fffdf0;
+    vertical-align: middle;
+    opacity:  1;
+    outline-width: 2;
+    pointer-events: none;
+
+
+
+    
+}
+
+#disclaimer {
+   margin-right: 25%;
+   margin-top: 35%;
+   display: flex;
+}
+
+.step {
+    margin-bottom: 0px;
+    margin-top: 100%;
+    border-width: 1;
+    border-color: black;
+    border-style: solid;
+    padding: 30;
+    font-weight: 400;
+    line-height: 1em;
+    //text-align: justify;
+    background-color:#fffdf0;
+    justify-content: center !important;
+    //vertical-align: middle;
+    display: flex;
+    align-items: center !important; 
+    flex-direction: column;
+    flex: 1;
+    
+    
+}
+
+
+.finalstep {
+    margin-bottom: 0px;
+    margin-top: 100%;
+    border-width: 1;
+    border-color: black;
+    border-style: solid;
+    padding: 30;
+    font-weight: 400;
+    line-height: 1em;
+    //text-align: justify;
+    background-color:#fffdf0;
+    justify-content: center;
+    //vertical-align: middle;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
+    pointer-events: all !important;
+    z-index: 1000 !important;
+    
+    
+}
+
+#finalstep{
+    pointer-events: all !important;
+    z-index: 1000 !important;
+}
+
+
+
+
+h1 {
+     font-weight: 700;
+    text-align: left;
+    line-height: 32px;
+    /*font-size: 35px;*/
+    /*background-color: #013E75;*/
+    color: #fffdf0;
+}
+
+h2 {
+    font-weight: 700;
+    text-align: left;
+    line-height: 32px;
+    /*font-size: 35px;*/
+    /*background-color: #84092A;*/
+    color:#fffdf0;
+}
+
+.speed{
+    font-weight: bold;
+    background-color: #013E75;
+    font-size: 17px;
+    color: #fffdf0;
+}
+
+.start_hr2{
+    font-weight: bold;
+    background-color: #84092A;
+    font-size: 17px;
+    color: #fffdf0;
+}
+
+.num{
+    font-kerning: none;
+    font-family: "Kosugi"
+}
+
+strong {
+    color: black;
+    background-color: #cdd7b7;
+}
+
+
+
+
+
+
+.dot{
+    z-index: 1000;
+    r:  6;
+}
+
+.hoverline{
+    z-index: 1001;
+    size:  6;
+    stroke: #505050;
+    stroke-width: 2;
+    /*stroke-dasharray: 1;*/
+}
+
+.hoverlinefixed{
+    z-index: 0;
+    size:  2;
+    stroke: #505050;
+    stroke-width: 4;
+    /*stroke-dasharray: 1;*/
+}
+
+#name-watermark{
+    font-size: 50;
+    fill: black;
+    opacity: 1;
+    font-weight: bold;
+    z-index: 10;
+
+
+}
+
+
+#link_text{
+   color:  #013E75 !important;
+    z-index: 10;
+
+
+}
+
+
+
+
+.bands{
+    font-size: 100;
+    z-index: 5;
+}
+
+
+.legx{
+    z-index: 20;
+}
+
+.marker {
+  background-image: url('./marker.svg');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #013e75;
+  stroke: black;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+}
+
+
+#vis {
+    display: fixed;
+    position: fixed;
+    top: 5%;
+    left:  15%;
+    z-index: 2;
+    //height: 700px;
+    //width: 450px;
+    font-family: "Crimson Text";
+    z-index: 5;
+    //background-color:#fffdf0;
+    opacity: 90%;
+
+    
+
+}
+
+#sidebar{
+    float:left;
+     width:18%;
+z-index: 5
+ background-color:  #fffdf0 !important;
+ font-size: 17px;
+}
+
+#logo{
+    font-family: "Lato";
+    left: 2%;
+    bottom: 90%;
+   padding-left: 50px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   padding-right: 10px;
+    position: fixed;
+   font-size: 35px;
+   font-weight: bold;
+    color: white;
+    pointer-events: all;
+    text-align: right;
+    background-color: #013e75;
+    z-index: 100000;
+}
+
+
+
+
+.yaxis{
+
+}
+
+.centred_input{
+ background-color:  #fffdf0 !important;
+ font-size: 17px;
+ font-family: "Crimson Text"
+/* display: inline-block;
+ margin: 0 auto;*/
+}
+
+input{
+    display: block;
+    /*margin: 0 auto;*/
+    margin-top: 10px;
+}
+
+select{
+    display: block;
+    /*margin: 0 auto;*/
+    margin-top: 10px;
+}
+
+#hour {
+    display: inline-block;
+    position: fixed;
+    top: 100px;
+    right: 100px;
+    
+    /*height: 100px;*/
+    /*width: 40%;*/
+    font-family: "Crimson Text";
+    z-index: 100;
+    font-weight: bold;
+    pointer-events: all;
+    align-items: center;
+    justify-content: center;
+     border-width: 2;
+    /*-webkit-text-stroke: 0.5px;*/
+    /*-webkit-text-stroke-color: #fffdf0;*/
+    /*padding: 100px;*/
+
+}
+
+.hourtext{
+    font-size: 60px;
+    color: 363231;
+    pointer-events: none;
+    text-align: middle;
+    background-color:#fffdf0;
+     border-width: 2;
+    border-color: black;
+    border-style: solid;
+    margin-left: 50px;
+
+
+}
+
+
+.mapboxgl-popup-content {
+    
+    font-weight: bold;
+    font-family: "Crimson Text" !important;
+    background-color:  #fffdf0 !important;
+    box-shadow: 3px 3px 2px #8B5D33;
+    padding:  6px;
+    border-width: 1;
+    border-color: black;
+    border-style: solid;
+    border-radius: 0 !important;
+    font-size: 20;
+}
+
+
+
+#slippymap {
+    display: inline-block;
+    position: fixed;
+    left: 15%;
+    top:  0px;
+    z-index: 0;
+    margin-left: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+
+
+#tooltip {
+    position: absolute;
+    display: flex;  
+    color: black;
+    padding: 6px;
+    z-index: 999;
+    font-size: 0.6em;
+    max-width: 500px;
+    z-index: 10000;
+    border-width: 1;
+    border-color: black;
+    border-style: solid;
+    background-color:  #fffdf0 !important;
+    font-kerning: none;
+
+}
+
+
+#denoise{
+    display: none !important;
+}
+#generalize{
+    display: none;
+}
+
+#polygons_lines{
+    display: none;
+}
+
+
+#city_select{
+
+  background-color: #c6d6e2; 
+  border: none;
+  color: black;
+  /*padding: 15px 32px;*/
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  /*border-radius:  8px;*/
+  font-family: "Crimson Text";
+  /*margin-right: 20%;*/
+  font-weight: bold;
+  z-index: 2000;
+  /*border-radius:  8px;*/
+  border-width: 2;
+  border-color: dark grey;
+  border-style: solid;
+  outline: none !important;
+  width: 70%;
+  text-align-last: center; 
+
+
+}
