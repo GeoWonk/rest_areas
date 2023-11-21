@@ -17,7 +17,7 @@ const graph_pad = 0
 const vispad = 0
 var  ra_dat
 var areay, yAxis, domain, areax, min_area, max_area
- 
+ var popup = new mapboxgl.Popup({ closeOnClick: false , anchor: 'left', offset: 20})
  const min_time = 0;
  const max_time = 96;
  var counter =  min_time;
@@ -36,7 +36,7 @@ const stamps  = buff[0].stamps;
       //style: 'mapbox://styles/mapbox/satellite-v9',
       pitch:45,
       center: [149.1904, -35.2109],
-      zoom: 10,
+      zoom: 7,
       interactive: true
   });
 var bounds = new mapboxgl.LngLatBounds({lng: 149.55930, lat: -32.65451}, {lng: 151.84277, lat: -35.38813})
@@ -204,7 +204,29 @@ change_ra = function(new_ra) {
                }
         )
      move_focus([link.lon, link.lat])
-     //move_focus()
+
+
+     gen_pop_up(link)
+
+}
+
+
+function gen_pop_up(link){
+
+        popup
+        .setLngLat([link.lon, link.lat])
+        .setHTML(
+            "<strong>Name:".padEnd(17, ' ') + "</strong>&nbsp&nbsp" + ra_dat.properties.name + "<br>" + 
+            "<strong>Fuel:".padEnd(18, ' ') + "</strong>&nbsp&nbsp" + ra_dat.fuel + "<br>" + 
+            "<strong>Shelter:".padEnd(19, ' ') + "</strong>&nbsp&nbsp" + ra_dat.shelter + "<br>" + 
+            "<strong>Toilets:".padEnd(19, ' ') + "</strong>&nbsp&nbsp" + ra_dat.toilets + "<br>" + 
+            "<strong>Water:".padEnd(17, ' ') + "</strong>&nbsp&nbsp" + ra_dat.water_supply + "<br>" + 
+            "<strong>Tables:".padEnd(18, ' ') + "</strong>&nbsp&nbsp" + ra_dat.picnic_table + "<br>" +
+            "<strong>Bins:".padEnd(18, ' ') + "</strong>&nbsp&nbsp" + ra_dat.litter_bins + "<br>" +
+            "" + `<a href=${link.link}>View on StreetView</a>` + "<br>" 
+            )
+        .addTo(map);
+          
 
 }
 
@@ -216,16 +238,16 @@ function get_link(){
   let lat = ra_dat.geometry.coordinates[0].map(c => {return c[1]})
   lat= lat.reduceRight((acc, cur) => acc+cur, 0) / lat.length
   let link = `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lon}`
-  d3.select('#vis').select('svg')
-    .selectAll('#link_text')
-    .html(`<a href=${link}>View on StreetView</a>`)
+  // d3.select('#vis').select('svg')
+  //   .selectAll('#link_text')
+  //   .html(`<a href=${link}>View on StreetView</a>`)
 
   return  {
     'link':link,
     'lon': lon,
     'lat': lat,
 
-}
+    }
     
 }
   
@@ -426,15 +448,18 @@ function mouseOut(event, d) {
 
 function update_polygons(){
   let time = stamps[counter]
-  //console.log(counter)
+  
+  
   //console.log('datetime ', time.toTimeString())
   d3.select('#hour').selectAll('.hourtext')
   .html('<span class = num>&nbsp' + time + '&nbsp</span>')
   .style('border-color', pall[counter])
   let i = 0
+
   for (f of buff){
 
             f.properties.current_count = f.properties.counts[counter]
+            f.properties.c = pall[counter]
         }
   
 }
@@ -445,23 +470,10 @@ function update_polygons(){
      map.on('load', function(){
       //fitBounds(geom[0]);
 
-      map.loadImage(
-        'cargo-truck.png',
-      (error, image) => {
-        if (error) throw error;
-        //console.log('past error')
-        map.addImage('truck', image, {sdf: true})
-      })
-            
+      
+     
 
      
-       // map.addSource('points', {
-       //          'type': 'geojson',
-       //          'data': {
-       //            'type': 'FeatureCollection',
-       //            'features': geom,
-       //         }
-       //      });
 
        map.addSource('polys', {
                 'type': 'geojson',
@@ -513,7 +525,7 @@ function update_polygons(){
                 }
             });
 
-
+       var c = pall[counter]
        map.addLayer({
                 'id': 'poly',
                 'type': 'fill-extrusion',
@@ -521,14 +533,15 @@ function update_polygons(){
                 
                 'paint': {
                   
-                  'fill-extrusion-color': [
-                    'interpolate',
-                    //['exponential', Math.E],
-                    ['linear'],
-                    ['to-number', ['get', 'current_count']],
-                    0, cols[1],
-                    max, cols[0],
-                  ],
+                  // 'fill-extrusion-color': [
+                  //   'interpolate',
+                  //   //['exponential', Math.E],
+                  //   ['linear'],
+                  //   ['to-number', ['get', 'current_count']],
+                  //   0, cols[1],
+                  //   max, cols[0],
+                  // ],
+                  'fill-extrusion-color':  ['get', 'c'],
                    'fill-extrusion-height': [
                     'interpolate',
                     ['linear'],
